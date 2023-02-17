@@ -14,7 +14,7 @@ import {
 	manualDedent,
 	openingBracketReplace,
 	printFn,
-	printRaw,
+	printRaw
 } from './utils';
 
 const {
@@ -22,7 +22,7 @@ const {
 	utils: { stripTrailingHardline, mapDoc },
 } = _doc;
 
-const supportedStyleLangValues = ['css', 'scss', 'sass', 'less'] as const;
+const supportedStyleLangValues = ['css', 'postcss', 'scss', 'sass', 'less'] as const;
 type supportedStyleLang = (typeof supportedStyleLangValues)[number];
 
 // https://prettier.io/docs/en/plugins.html#optional-embed
@@ -291,6 +291,7 @@ function embedStyle(
 	switch (lang) {
 		case 'less':
 		case 'css':
+		case 'postcss':
 		case 'scss': {
 			let formattedStyles = wrapParserTryCatch(textToDoc, content, { ...options, parser: lang });
 
